@@ -6,8 +6,8 @@ import axios from "axios";
 const axiosIns = axios.create({
   // You can add your headers here
   // ================================
-  // baseURL: "http://localhost:9000/",
-  baseURL: "https://vuesax-api.herokuapp.com/",
+  baseURL: "http://localhost:9000/",
+  // baseURL: "https://vuesax-api.herokuapp.com/",
   // timeout: 1000,
   // headers: {'X-Custom-Header': 'foobar'}
 });

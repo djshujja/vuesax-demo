@@ -96,7 +96,7 @@ export default {
   },
   async mounted() {
     this.isBusy = true;
-    await this.$http.get("http://localhost:9000/categories/").then((res) => {
+    await this.$http.get("/categories/").then((res) => {
       this.items = res.data;
       this.isBusy = false;
     });
