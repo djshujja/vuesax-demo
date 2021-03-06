@@ -25,6 +25,34 @@ const router = new VueRouter({
       },
     },
     {
+      path: "/categories",
+      name: "categories",
+      component: () => import("@/views/Categories.vue"),
+      meta: {
+        pageTitle: "Manage Categories",
+        breadcrumb: [
+          {
+            text: "Categories",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: "/products",
+      name: "products",
+      component: () => import("@/views/Products.vue"),
+      meta: {
+        pageTitle: "Manage Products",
+        breadcrumb: [
+          {
+            text: "Products",
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: "/dogs-page",
       name: "dogs-page",
       component: () => import("@/views/Dogs.vue"),
