@@ -28,7 +28,9 @@
           </b-form-group>
         </b-form>
       </b-modal>
+      <h4 v-if="isBusy" class="text-center">Loading...</h4>
       <b-table
+        v-else
         striped
         hover
         light

@@ -80,11 +80,13 @@
         </b-form-select>
       </b-form-group>
 
+      <h4 v-if="isBusy" class="text-center">Loading...</h4>
+
       <b-table
         striped
         hover
         light
-        v-if="items.length > 0"
+        v-if="items.length > 0 && !isBusy"
         :items="items"
         head-variant="dark"
         :fields="fields"
@@ -106,8 +108,7 @@
           >
         </template>
       </b-table>
-
-      <h4 v-else class="text-center">
+      <h4 v-else-if="!isBusy" class="text-center">
         No Products available in the selected category
       </h4>
     </b-card>
@@ -143,6 +144,7 @@ export default {
       newCategory: null,
       categories: [],
       items: [],
+      isBusy: true,
       form: {
         title: "",
         price: "",
@@ -168,6 +170,7 @@ export default {
   async mounted() {
     await this.$http.post("/products").then((res) => {
       this.items = res.data;
+      this.isBusy = false;
     });
     await this.$http.get("/categories").then((res) => {
       this.categories = res.data;
@@ -175,11 +178,15 @@ export default {
   },
   methods: {
     async fetchProducts() {
+      this.isBusy = true;
       await this.$http
         .post("/products", {
           category: this.selected,
         })
-        .then((res) => (this.items = res.data));
+        .then((res) => {
+          this.isBusy = false;
+          this.items = res.data;
+        });
     },
     async handleSubmit() {
       this.form.category = this.newCategory;
